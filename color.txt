@@ -1,0 +1,10 @@
+| Usage                            | Color                           | Hex       |
+| -------------------------------- | ------------------------------- | --------- |
+| **Primary Background**           | Radiant Scarlet                 | `#FF2E2E` |
+| **Secondary Background / Cards** | Light Rose                      | `#FFE5E5` |
+| **Accent 1**                     | Cherry Red                      | `#E32636` |
+| **Accent 2**                     | Hot Coral                       | `#FF4C4C` |
+| **Accent 3**                     | Dark Crimson                    | `#8B0000` |
+| **Main Text**                    | Deep Charcoal (for readability) | `#1F1F1F` |
+| **Subtext**                      | Warm Gray                       | `#3A3A3A` |
+| **Button Hover**                 | Blood Red                       | `#B22222` |
