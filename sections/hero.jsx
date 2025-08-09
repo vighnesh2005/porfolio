@@ -27,7 +27,7 @@ const Hero = () => {
             alt="Hero Image"
             width={400}
             height={400}
-            className="object-cover rounded-2xl shadow-lg h-[400px] w-[400px]"
+            className="object-cover rounded-2xl shadow-lg h-[350px] w-[350px] max-md:mt-10"
             />
       </motion.div>
 
@@ -62,7 +62,7 @@ const Hero = () => {
 
         {/* Social Links */}
         <motion.div
-          className="flex px-8 gap-5 items-center"
+          className="flex px-8 gap-5 items-center flex-wrap"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
