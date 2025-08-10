@@ -13,7 +13,7 @@ const Projects = () => {
       viewport={{ once: false, amount: 0.2 }}
       >Projects</motion.h2>
 
-    <motion.div>
+    <motion.div className="mt-10">
         {
             projects.map((projects,index)=>{
                 return (

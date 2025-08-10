@@ -33,7 +33,7 @@ export const skills = [
         title:"fastapi",
         img:"/fastapi.svg",
         type:["Backend"],
-        colored:"/FastAPI.svg"
+        colored:"/fastapi.svg"
     },
     {
         title:"flask",
