@@ -38,7 +38,7 @@ const Contact = () => {
 
 
   return (
-    <section id='education' className='flex flex-col items-center p-10 w-full min-h-screen'>
+    <section id='contact' className='flex flex-col items-center p-10 w-full min-h-screen'>
       <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
       bg-orange-200 w-fit p-4  rounded-2xl "
       initial={{ opacity: 0, y: 50 }}
@@ -104,7 +104,7 @@ const Contact = () => {
                 viewport={{ once: false, amount: 0.2 }}
 
                 >
-                📞 Contact Me via Phone No
+                📞 Contact Me Via Phone No
             </motion.a>
             <motion.div
                 className="bg-black text-white p-4 rounded-lg shadow-lg border-2 border-orange-200 w-full"

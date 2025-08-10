@@ -5,7 +5,7 @@ import { education } from '@/utils/skills.js';
 
 const Education = () => {
   return (
-    <section id='education' className='flex flex-col items-center p-10 w-full min-h-screen'>
+    <section id='education' className='flex flex-col items-center lg:p-10 w-full min-h-screen'>
       <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
       bg-orange-200 w-fit p-4  rounded-2xl "
       initial={{ opacity: 0, y: 50 }}

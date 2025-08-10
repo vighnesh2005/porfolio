@@ -32,7 +32,7 @@ const Hero = () => {
             alt="Hero Image"
             width={400}
             height={400}
-            className="object-cover rounded-2xl shadow-lg h-[350px] w-[350px] max-md:mt-10"
+            className="object-cover rounded-2xl shadow-lg h-[350px] w-[350px] max-md:mt-10 max-sm:h-[300px] max-sm:w-[300px]"
             />
       </motion.div>
 

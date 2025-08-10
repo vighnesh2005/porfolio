@@ -4,7 +4,7 @@ import { projects } from '@/utils/skills.js';
 
 const Projects = () => {
   return (
-    <section id="projects" className="p-10 mt-10 flex flex-col items-center min-h-screen">
+    <section id="projects" className="sm:p-10 mt-10 flex flex-col items-center min-h-screen">
         <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
       bg-orange-200 w-fit p-3 rounded-2xl gap-2 "
       initial={{ opacity: 0, y: 50 }}
