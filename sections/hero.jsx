@@ -13,7 +13,10 @@ const socialLinks = [
 
 const Hero = () => {
   return (
-    <section id="home" className="flex flex-wrap items-center justify-center h-screen md:p-10 gap-10">
+    <section
+      id="home"
+      className="flex flex-col md:flex-row flex-wrap items-center justify-center min-h-screen md:p-10 gap-10"
+    >
       
       {/* Image Section */}
       <motion.div
@@ -96,7 +99,6 @@ const Hero = () => {
                 transition={{ duration: 1, ease: 'easeInOut' }}
                 viewport={{ once: false, amount: 0.2 , delay: 1 }}
             >Contact</motion.a>
-            
         </motion.div>
       </motion.div>
 
