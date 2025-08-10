@@ -14,7 +14,7 @@ const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
   return (
-    <section id="skills" className="p-10 flex flex-col items-center ">
+    <section id="skills" className="p-10 flex flex-col items-center min-h-screen mt-5">
       <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
       bg-orange-200 w-fit p-3 rounded-2xl"
       initial={{ opacity: 0, y: 50 }}

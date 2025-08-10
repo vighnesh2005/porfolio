@@ -119,3 +119,26 @@ export const projects = [
     }
 ]
 
+export const education = [
+    {
+        title: "Bachelor of Engineering in Computer Science",
+        institution: "IIITDM Kurnool",
+        duration: "2023 - Present",
+        description: "Pursuing a degree in Computer Science with a focus on software development, data structures, and algorithms.",
+        image: "/iiitdmk.jpg"
+    },
+    {
+        title: "Intermediate Education",
+        institution: "Sri Chaitanya Junior College",
+        duration: "2021 - 2023",
+        description: "Completed intermediate education with a strong foundation in mathematics and science.",
+        image: "/sri-chaitanya.jpeg"
+    },
+    {
+        title: "High School Education",
+        institution: "The Athena School",
+        duration: "2020 - 2021",
+        description: "Completed high school with a strong foundation in mathematics and science.",
+        image: "/athena_school.avif"
+    }
+]

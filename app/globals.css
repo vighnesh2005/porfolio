@@ -14,3 +14,7 @@
   font-weight:bolder;
   font-style: normal;
 }
+
+body {
+  scroll-behavior: smooth;
+}

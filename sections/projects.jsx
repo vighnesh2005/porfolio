@@ -4,9 +4,9 @@ import { projects } from '@/utils/skills.js';
 
 const Projects = () => {
   return (
-    <section id="projects" className="p-10 mt-10 flex flex-col items-center">
+    <section id="projects" className="p-10 mt-10 flex flex-col items-center min-h-screen">
         <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
-      bg-orange-200 w-fit p-3 rounded-2xl"
+      bg-orange-200 w-fit p-3 rounded-2xl gap-2 "
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 , ease: "easeInOut" }}
@@ -20,7 +20,7 @@ const Projects = () => {
                     <motion.div
                         key={index}
                         className="flex max-lg:flex-wrap mb-8 p-6 bg-green-950 rounded-lg shadow-lg 
-                        gap-10 hover:shadow-xl transition-shadow duration-300 border-2 border-orange-200"
+                        gap-10 hover:shadow-md hover:-translate-y-2 hover:shadow-orange-300  transition-all duration-500 border-2 border-orange-200"
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}

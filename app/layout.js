@@ -25,7 +25,8 @@ export default function RootLayout({ children }) {
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Great+Vibes&family=Rock+Salt&display=swap" rel="stylesheet"></link>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#8B0000]/85`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#8B0000]/85 
+        selection:bg-amber-400 selection:text-gray-900`}
       >
         {children}
       </body>

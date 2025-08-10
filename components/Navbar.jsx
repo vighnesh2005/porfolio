@@ -9,10 +9,9 @@ const Navbar = () => {
 
   const links = [
     { name: 'Home', href: '#home' },
+    { name: 'Education', href: '#education' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ]
 
@@ -37,7 +36,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className='flex justify-between items-center px-4 md:px-8 py-4 z-50 sticky top-0 bg-black/10 backdrop-blur-md'
+      className='flex justify-between items-center px-4 md:px-8 py-4 z-50 sticky top-0 bg-black/20 '
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}

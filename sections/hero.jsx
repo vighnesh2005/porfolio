@@ -15,7 +15,9 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="flex flex-col md:flex-row flex-wrap items-center justify-center min-h-screen md:p-10 gap-10"
+      className="flex flex-col md:flex-row flex-wrap items-center justify-center min-h-screen md:p-10 gap-10 
+        top-0 
+      "
     >
       
       {/* Image Section */}
@@ -87,13 +89,13 @@ const Hero = () => {
                 <Icon 
                 className="text-orange-200 bg-black p-2 h-12 w-12 rounded-lg
                     hover:scale-105 hover:-translate-y-0.5 hover:rounded-xl hover:text-white
-                    transition-all duration-300 ease-in-out"
+                    transition-all duration-300 ease-in-out hover:shadow-md hover:shadow-orange-200"
                 />
             </motion.a>
             ))}
             <motion.a href="#contact" className="text-orange-200 bg-black p-3 rounded-2xl
             hover:scale-105 hover:-translate-y-0.5 hover:rounded-xl transition-all duration-300 ease-in-out
-            hover:text-white text-lg font-semibold tracking-wider"
+            hover:text-white text-lg font-semibold tracking-wider hover:shadow-md hover:shadow-orange-200"
             initial={{ opacity: 0, y:20 }}
                 whileInView={{ opacity: 1, y:0 }}
                 transition={{ duration: 1, ease: 'easeInOut' }}
