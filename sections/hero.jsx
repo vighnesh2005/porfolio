@@ -13,7 +13,7 @@ const socialLinks = [
 
 const Hero = () => {
   return (
-    <section id="home" className="flex flex-wrap items-center justify-around h-screen md:p-10">
+    <section id="home" className="flex flex-wrap items-center justify-center h-screen md:p-10 gap-10">
       
       {/* Image Section */}
       <motion.div
