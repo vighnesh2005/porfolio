@@ -95,27 +95,27 @@ export const skills = [
 export const projects = [
     {
         title: "Portfolio",
-        description: "A personal portfolio website to showcase my skills and projects.",
+        description:"A personal portfolio website showcasing my frontend and backend skills with a clean, responsive design. It features sections for technical skills, project details with links, and contact information for professional connections.",
         img: "/portfolio.png",
-        link: "",
-        github: "",
+        link: "https://porfolio-xi-rosy.vercel.app/",
+        github: "https://github.com/vighnesh2005/porfolio",
         tags: ["HTML", "CSS", "JavaScript", "React"]
     },
     {
-        title: "realestate",
-        description: "A real estate website with property listings and search functionality.",
+        title: "RealEstate",
+        description: "A real estate website featuring comprehensive property listings with detailed information, photos, and pricing. It includes robust search and filter options to help users quickly find properties that meet their specific criteria.",
         img: "/realestate.png",
         link: "",
-        github: "",
-        tags: ["HTML", "CSS", "JavaScript", "React"]
+        github: "https://github.com/vighnesh2005/realestate",
+        tags: ["HTML", "CSS", "JavaScript", "react", "Node.js", "supabase"]
     },
     {
-        title: "codeBuddy",
-        description: "A collaborative coding platform for developers to share and learn.",
+        title: "CodeBuddy",
+        description: "CodeBuddy is a coding platform for practicing Data Structures and Algorithms with live contests, real-time ranking, and community discussions to help learners improve their skills efficiently.  ",
         img: "/codebuddy.png",
-        link: "",
-        github: "",
-        tags: ["HTML", "CSS", "JavaScript", "React", "Node.js"]
+        link: "https://codebuddy-1wcn.vercel.app/",
+        github: "https://github.com/vighnesh2005/Codebuddy",
+        tags: ["HTML", "CSS", "JavaScript", "next.js", "Node.js", "MongoDB"]
     }
 ]
 
