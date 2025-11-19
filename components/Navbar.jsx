@@ -36,48 +36,52 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className='flex justify-between items-center px-4 md:px-8 py-4 z-50 sticky top-0 bg-black/20 '
+      className='sticky top-0 z-50 bg-black/40 backdrop-blur-lg border-b border-orange-200/20'
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
     >
-      {/* Logo */}
-      <a
-        className='font-great text-lg sm:text-xl md:text-2xl text-orange-200 font-bold tracking-widest
-        hover:text-white transition-all duration-300 ease-in-out 
-        hover:scale-105 hover:-translate-y-0.5'
-        href="#home"
-      >
-        Vighnesh Prasad
-      </a>
+      <div className='max-w-6xl mx-auto flex justify-between items-center px-4 md:px-8 py-3'>
+        {/* Logo */}
+        <motion.a
+          className='font-great text-lg sm:text-xl md:text-2xl text-orange-200 font-bold tracking-widest
+          hover:text-white transition-all duration-300 ease-in-out'
+          href="#home"
+          whileHover={{ scale: 1.07, boxShadow: '0 10px 30px rgba(0,0,0,0.45)' }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Vighnesh Prasad
+        </motion.a>
 
-      {/* Desktop Links */}
-      <div className='hidden md:flex'>
-        {links.map((link, index) => (
-          <a
-            key={index}
-            href={link.href}
-            className='mx-3 lg:mx-4 text-orange-200 font-semibold
-            hover:text-white transition-all duration-500 ease-in-out  
-            text-base lg:text-lg font-bebas tracking-widest
-            hover:scale-110 hover:-translate-y-0.5
-            relative after:content-[""] after:absolute after:h-0.5 after:w-0 after:bg-[#FFE5E5]
-            after:bottom-0 after:left-0 after:rounded-full
-            hover:after:w-full after:transition-all after:duration-300 after:ease-in-out'
-          >
-            {link.name}
-          </a>
-        ))}
+        {/* Desktop Links */}
+        <div className='hidden md:flex'>
+          {links.map((link, index) => (
+            <motion.a
+              key={index}
+              href={link.href}
+              className='mx-3 lg:mx-4 text-orange-200 font-semibold
+              hover:text-white transition-all duration-500 ease-in-out  
+              text-base lg:text-lg font-bebas tracking-widest
+              relative after:content-[""] after:absolute after:h-0.5 after:w-0 after:bg-[#FFE5E5]
+              after:bottom-0 after:left-0 after:rounded-full
+              hover:after:w-full after:transition-all after:duration-300 after:ease-in-out'
+              whileHover={{ scale: 1.07, boxShadow: '0 10px 30px rgba(0,0,0,0.4)' }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {link.name}
+            </motion.a>
+          ))}
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className='md:hidden text-orange-200 hover:text-white transition-all duration-300'
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
-
-      {/* Mobile Menu Button */}
-      <button
-        className='md:hidden text-orange-200 hover:text-white transition-all duration-300'
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle Menu"
-      >
-        {isOpen ? "" : <Menu size={28} />}
-      </button>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -88,7 +92,8 @@ const Navbar = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className='fixed top-0 right-0 w-3/4 sm:w-2/3 h-screen bg-black/90 backdrop-blur-md p-6 flex flex-col items-start space-y-6 z-50 shadow-lg'
+            className='fixed top-0 right-0 w-3/4 sm:w-2/3 h-screen bg-gradient-to-b from-black/95 via-black/90 to-[#210000] 
+            backdrop-blur-xl p-6 flex flex-col items-start space-y-6 z-50 shadow-[0_0_40px_rgba(0,0,0,0.9)] border-l border-orange-200/30'
           >
             {links.map((link, index) => (
               <motion.a

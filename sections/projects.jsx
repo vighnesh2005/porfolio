@@ -4,67 +4,80 @@ import { projects } from '@/utils/skills.js';
 
 const Projects = () => {
   return (
-    <section id="projects" className="sm:p-10 mt-10 flex flex-col items-center min-h-screen">
+    <section id="projects" className="w-full px-4 sm:px-6 lg:px-10 mt-10 flex flex-col items-center min-h-screen py-10">
         <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
-      bg-orange-200 w-fit p-3 rounded-2xl gap-2 "
+      bg-orange-200 text-black w-fit p-3 rounded-2xl gap-2 "
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 , ease: "easeInOut" }}
+      transition={{ type: 'spring', stiffness: 320, damping: 18 }}
       viewport={{ once: false, amount: 0.2 }}
       >Projects</motion.h2>
 
-    <motion.div className="mt-10">
+    <motion.div className="mt-10 w-full max-w-6xl mx-auto space-y-6">
         {
-            projects.map((projects,index)=>{
+            projects.map((project,index)=>{
                 return (
                     <motion.div
                         key={index}
-                        className="flex max-lg:flex-wrap mb-8 p-6 bg-green-950 rounded-lg shadow-lg 
-                        gap-10 hover:shadow-md hover:-translate-y-2 hover:shadow-orange-300  transition-all duration-500 border-2 border-orange-200"
-                        initial={{ opacity: 0, y: 50 }}
+                        className="transform-gpu flex max-lg:flex-wrap p-4 sm:p-5 md:p-6 bg-black/60 backdrop-blur-lg rounded-2xl shadow-lg 
+                        gap-4 sm:gap-6 md:gap-8 transition-all duration-150 hover:duration-150 border border-orange-200/70"
+                        initial={{ opacity: 0, y: 28 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeInOut" }}
+                        whileHover={{ scale: 1.055, boxShadow: '0 14px 34px rgba(0,0,0,0.5)', transition: { type: 'tween', duration: 0.14, ease: 'easeOut' } }}
+                        whileTap={{ scale: 0.985, transition: { type: 'tween', duration: 0.1, ease: 'easeOut' } }}
+                        transition={{ type: "spring", stiffness: 360, damping: 16 }}
+
                         viewport={{ once: false, amount: 0.2 }}
                         >
+                        {/* Left: Image */}
                         <img
-                            src={projects.img}
-                            alt={projects.title}
-                            className="h-52 object-cover rounded-t-lg mb-4 border-2 border-orange-200"
+                            src={project.img}
+                            alt={project.title}
+                            className="h-48 sm:h-56 md:h-60 w-full max-w-[360px] object-cover rounded-2xl border-2 border-orange-200"
                         />
-                        <div className='flex flex-col justify-between'>
-                            <h3 className="text-3xl font-semibold mb-2 text-orange-300">
-                            {projects.title}
-                            </h3>
-                            <p className="text-gray-300 mb-4">{projects.description}</p>
-                            <div>
-                            <a
-                            href={projects.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-orange-400 hover:text-orange-600 transition-colors duration-200"
-                            >
-                            View Project
-                            </a>
-                            <a
-                            href={projects.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="ml-4 text-orange-400 hover:text-orange-600 transition-colors duration-200"
-                            >
-                            GitHub
-                            </a>
+                        {/* Right: Content */}
+                        <div className='flex flex-col justify-between flex-1 min-w-[240px]'>
+                            <div className="flex flex-col gap-2">
+                              {project.location && (
+                                <span className="self-start px-3 py-1 rounded-full bg-orange-100/90 text-black text-sm">{project.location}</span>
+                              )}
+                              <h3 className="text-2xl sm:text-3xl font-semibold text-orange-300">{project.title}</h3>
+                              <p className="text-gray-300 text-sm sm:text-base">{project.description}</p>
+                              {/* Tags */}
+                              <div className='flex flex-wrap gap-2 mt-2'>
+                                {project.tags && project.tags.map((tag, i) => (
+                                  <span key={i} className="px-3 py-1 rounded-full bg-[#FFE0B5] text-black text-xs border border-orange-300/70">{tag}</span>
+                                ))}
+                              </div>
                             </div>
-                            <div className='flex flex-wrap gap-4 mt-4'>
-                            {
-                                projects.tags.map((skill, index) => {
-                                    return (
-                                        <div key={index} className="flex items-center gap-2 mb-2">
-                                            <span className="text-gray-300">{skill}</span>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+
+                            {/* Buttons row */}
+                            <div className='mt-4 flex gap-3 flex-wrap'>
+                              {project.github && (
+                                <motion.a
+                                  href={project.github}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center justify-center px-5 py-2 rounded-full bg-black text-orange-100 border border-orange-200/70 hover:bg-zinc-900"
+                                  whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.45)' }}
+                                  whileTap={{ scale: 0.98 }}
+                                >
+                                  GitHub
+                                </motion.a>
+                              )}
+                              {project.link && (
+                                <motion.a
+                                  href={project.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center justify-center px-5 py-2 rounded-full bg-orange-200 text-black border border-orange-300 hover:bg-orange-300"
+                                  whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.45)' }}
+                                  whileTap={{ scale: 0.98 }}
+                                >
+                                  Live
+                                </motion.a>
+                              )}
+                            </div>
                         </div>
                         
                         </motion.div>

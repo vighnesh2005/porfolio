@@ -11,14 +11,18 @@ const socialLinks = [
   { href: "/resume.pdf", icon: FileText, label: "Resume", download: true }
 ]
 
-const Hero = () => {
+  const Hero = () => {
   return (
     <section
       id="home"
-      className="flex flex-col md:flex-row flex-wrap items-center justify-center min-h-screen md:p-10 gap-10 
-        top-0 
-      "
+      className="relative overflow-hidden flex flex-col md:flex-row items-center justify-center min-h-screen 
+        px-4 md:px-8 lg:px-10 pt-24 pb-16 md:pt-32 gap-10"
     >
+      {/* Decorative background glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-60">
+        <div className="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-orange-500/30 blur-3xl" />
+        <div className="absolute -bottom-40 -right-20 h-80 w-80 rounded-full bg-red-800/40 blur-3xl" />
+      </div>
       
       {/* Image Section */}
       <motion.div
@@ -30,15 +34,16 @@ const Hero = () => {
         <Image
             src="/vighnesh1.jpg"
             alt="Hero Image"
-            width={400}
-            height={400}
-            className="object-cover rounded-2xl shadow-lg h-[350px] w-[350px] max-md:mt-10 max-sm:h-[300px] max-sm:w-[300px]"
+            width={800}
+            height={800}
+            className="object-cover rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.8)] h-[600px] w-[600px]
+            sm:h-[340px] sm:w-[340px] md:h-[500px] md:w-[500px] max-md:mt-10"
             />
       </motion.div>
 
       {/* Text + Socials */}
       <motion.div 
-        className="flex flex-col items-start justify-center h-full p-10 space-y-4"
+        className="flex flex-col items-start justify-center h-full p-6 md:p-8 lg:p-10 space-y-6 max-w-3xl"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut' }}
@@ -46,7 +51,8 @@ const Hero = () => {
       >
         <motion.h1 
         
-          className="font-rock text-4xl text-black bg-orange-200 px-8 py-10 rounded-xl tracking-wider"
+          className="font-rock text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black bg-orange-200 
+          px-6 sm:px-8 py-6 sm:py-8 rounded-xl tracking-wider leading-tight"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: "easeIn" }}
@@ -56,7 +62,8 @@ const Hero = () => {
         </motion.h1>
 
         <motion.h2 
-          className="text-4xl text-white mb-10 font-bold tracking-wide font-rock px-8"
+          className="text-2xl sm:text-3xl md:text-4xl text-black mb-8 font-bold tracking-wide font-rock 
+          bg-orange-100/90 rounded-lg px-4 sm:px-6 py-3 sm:py-4 shadow-md"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: "easeIn" }}
@@ -67,7 +74,7 @@ const Hero = () => {
 
         {/* Social Links */}
         <motion.div
-          className="flex px-8 gap-5 items-center flex-wrap"
+          className="flex px-2 sm:px-4 gap-4 sm:gap-5 items-center flex-wrap"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
@@ -83,18 +90,17 @@ const Hero = () => {
                 {...(download ? { download: "" } : {})}
                 initial={{ opacity: 0, y:20 }}
                 whileInView={{ opacity: 1, y:0 }}
-                transition={{ duration: 1, ease: 'easeInOut', delay: 0.2 * index }}
-                viewport={{ once: false, amount: 0.2 }}
+                whileHover={{ scale: 1.07, boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
+                whileTap={{ scale: 0.98 }}
             >
                 <Icon 
-                className="text-orange-200 bg-black p-2 h-12 w-12 rounded-lg
-                    hover:scale-105 hover:-translate-y-0.5 hover:rounded-xl hover:text-white
-                    transition-all duration-300 ease-in-out hover:shadow-md hover:shadow-orange-200"
+                className="text-orange-200 bg-black p-2 h-14 w-14 rounded-lg
+                    hover:scale-105 hover:shadow-md hover:shadow-orange-200"
                 />
             </motion.a>
             ))}
             <motion.a href="#contact" className="text-orange-200 bg-black p-3 rounded-2xl
-            hover:scale-105 hover:-translate-y-0.5 hover:rounded-xl transition-all duration-300 ease-in-out
+            hover:scale-105 hover:rounded-xl transition-all duration-300 ease-in-out
             hover:text-white text-lg font-semibold tracking-wider hover:shadow-md hover:shadow-orange-200"
             initial={{ opacity: 0, y:20 }}
                 whileInView={{ opacity: 1, y:0 }}

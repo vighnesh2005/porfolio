@@ -14,28 +14,29 @@ const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
   return (
-    <section id="skills" className="p-10 flex flex-col items-center min-h-screen mt-5">
+    <section id="skills" className="w-full px-4 sm:px-6 lg:px-10 py-10 flex flex-col items-center min-h-screen mt-5">
       <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
-      bg-orange-200 w-fit p-3 rounded-2xl"
+      bg-orange-200 text-black w-fit p-3 rounded-2xl"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 , ease: "easeInOut" }}
       viewport={{ once: false, amount: 0.2 }}
       >Skills</motion.h2>
 
-      <motion.div className='flex flex-wrap justify-center gap-10 mb-8'>
+      <motion.div className='flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-8 max-w-4xl w-full'>
         { categories.map((category,index) =>{
           return (
             <motion.button
               key={index}
               className={`px-4 py-2 rounded-lg font-bebas transition-colors duration-300 font-bold tracking-widest
               text-xl 
-              ${activeCategory === category ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-800 hover:bg-orange-300'}`}
+              ${activeCategory === category ? 'bg-orange-500 text-black shadow-lg' : 'bg-orange-100 text-[#4b1b16] hover:bg-orange-200'}`}
               onClick={() => setActiveCategory(category)}
-              whileHover={{ scale: 1.05 , duration: 0.2 }}
-              initial={{ opacity: 0, y: 40 }}
+              whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.35)' }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" , delay: index * 0.1 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20, delay: index * 0.05 }}
               viewport={{ once: false, amount: 0.2 }}
             >
               {category}
@@ -44,20 +45,22 @@ const Skills = () => {
         })}
       </motion.div>
 
-      <motion.div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 sm:gap-6 max-w-5xl w-full">
         {skills.filter(skill => activeCategory === "all" || skill.type.includes(activeCategory)).map((skill, index) => (
           <motion.div
             key={index}
-            className="flex flex-col items-center p-2 bg-orange-200
-            hover:bg-orange-400  hover:-translate-y-0.5 transition-all
-            rounded-lg shadow-lg hover:shadow-xl  duration-300 "
-            initial={{ opacity: 0, y: 40 }}
+            className="flex flex-col items-center p-3 bg-[#FFE0B5] text-black border border-orange-300/70
+            hover:bg-[#FFC47D] transition-all
+            rounded-xl shadow-lg hover:shadow-xl duration-300 "
+            initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut", delay: index * 0.1 }}
+            whileHover={{ scale: 1.06, boxShadow: '0 10px 30px rgba(0,0,0,0.45)' }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20, delay: index * 0.04 }}
             viewport={{ once: false, amount: 0.2 }}
           >
             <img src={skill.colored} alt={skill.title} className="w-10 h-10 mb-2" />
-            <h3 className="text-lg font-semibold text-center ">{skill.title}</h3>
+            <h3 className="text-lg font-semibold text-center text-black">{skill.title}</h3>
           </motion.div>
         ))} 
       </motion.div>

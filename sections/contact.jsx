@@ -38,21 +38,23 @@ const Contact = () => {
 
 
   return (
-    <section id='contact' className='flex flex-col items-center p-10 w-full min-h-screen'>
+    <section id='contact' className='flex flex-col items-center w-full min-h-screen px-4 sm:px-6 lg:px-10 py-10'>
       <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
-      bg-orange-200 w-fit p-4  rounded-2xl "
+      bg-orange-200 text-black w-fit p-4  rounded-2xl "
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 , ease: "easeInOut" }}
       viewport={{ once: false, amount: 0.2 }}
       >Contact</motion.h2>
 
-      <div className='flex flex-wrap gap-4 w-full py-5 justify-around '>
-        <motion.div className='flex flex-col gap-4 p-6 bg-black rounded-lg shadow-lg
-            text-white border-2 border-orange-200 md:w-1/3 w-full
+      <div className='flex flex-col lg:flex-row gap-8 w-full py-5 justify-between max-w-6xl mx-auto'>
+        <motion.div className='flex flex-col gap-4 p-6 bg-black rounded-2xl shadow-lg
+            text-white border border-orange-200/70 lg:w-1/2 w-full
         '
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.07, boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
+            whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.8 , ease: "easeInOut" }}
             viewport={{ once: false, amount: 0.2 }}
         >
@@ -89,7 +91,7 @@ const Contact = () => {
             >Send Email</button>
         </motion.div> 
         
-        <motion.div className='p-4 lg:w-1/3 w-full flex flex-col gap-4'
+        <motion.div className='p-4 lg:w-1/2 w-full flex flex-col gap-4'
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 , ease: "easeInOut" }}
@@ -100,23 +102,24 @@ const Contact = () => {
                 className="bg-black text-white p-4 rounded-lg shadow-lg border-2 border-orange-200 w-full"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 , ease: "easeInOut" }}
-                viewport={{ once: false, amount: 0.2 }}
-
-                >
+                whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.5)' }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+            >
                 📞 Contact Me Via Phone No
             </motion.a>
             <motion.div
                 className="bg-black text-white p-4 rounded-lg shadow-lg border-2 border-orange-200 w-full"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 , ease: "easeInOut" }}
-                viewport={{ once: false, amount: 0.2 }}
+                whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.5)' }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
             >
                  <h1 className='text-2xl font-bold text-orange-400 p-4'>My Socials</h1>
                  <motion.div
                            className="flex px-4 gap-5 items-center flex-wrap"
-                           initial={{ opacity: 0, y: 20 }}
+                           initial={{ opacity: 0, y: 50 }}
                            whileInView={{ opacity: 1, y: 0 }}
                            transition={{ duration: 0.5, ease: 'easeInOut' }}
                              viewport={{ once: false, amount: 0.2 }}
@@ -136,7 +139,7 @@ const Contact = () => {
                              >
                                  <Icon 
                                  className="text-orange-200 bg-black p-2 h-12 w-12 rounded-lg
-                                     hover:scale-105 hover:-translate-y-0.5 hover:rounded-xl hover:text-white border-2 border-orange-200
+                                     hover:scale-105 hover:rounded-xl hover:text-white border-2 border-orange-200
                                      transition-all duration-300 ease-in-out hover:shadow-md hover:shadow-orange-200"
                                  />
                              </motion.a>
