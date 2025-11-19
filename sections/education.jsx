@@ -20,22 +20,22 @@ const Education = () => {
             return (
               <motion.div
                 key={index}
-                className='bg-black/60 backdrop-blur-lg p-6 md:p-7 rounded-2xl shadow-lg w-full hover:shadow-orange-200 flex max-lg:flex-wrap
-                hover:shadow-md transition-all duration-300 border border-orange-200/70
-                gap-4 md:gap-6 lg:gap-8 '
+                className='transform-gpu bg-black/60 backdrop-blur-lg p-3 sm:p-5 md:p-7 rounded-2xl shadow-lg w-full hover:shadow-orange-200 flex flex-col sm:flex-row
+                hover:shadow-md transition-all duration-150 border border-orange-200/70
+                gap-3 sm:gap-5 md:gap-8 '
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.06, boxShadow: '0 10px 30px rgba(0,0,0,0.55)' }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 240, damping: 20 }}
+                whileHover={{ scale: 1.055, boxShadow: '0 14px 34px rgba(0,0,0,0.5)', transition: { type: 'tween', duration: 0.14, ease: 'easeOut' } }}
+                whileTap={{ scale: 0.985, transition: { type: 'tween', duration: 0.1, ease: 'easeOut' } }}
+                transition={{ type: "spring", stiffness: 320, damping: 18 }}
                 viewport={{ once: false, amount: 0.2 }}
               >
-                <img src={edu.image} alt={edu.title} className='h-60 w-full max-w-xs object-cover mb-4 border-2 border-orange-200 rounded-2xl' />
+                <img src={edu.image} alt={edu.title} className='w-full h-40 xs:h-48 sm:h-56 md:h-60 sm:max-w-[320px] object-cover mb-3 sm:mb-0 border-2 border-orange-200 rounded-2xl' />
                 <div className='flex flex-col gap-2 flex-1 min-w-[220px]'>
-                <h3 className='text-3xl font-semibold mb-2 text-orange-300'>{edu.title}</h3>
-                <p className='text-gray-300 '>{edu.institution}</p>
-                <p className='text-gray-400'>{edu.duration}</p>
-                <p className='text-gray-300 mt-2'>{edu.description}</p> 
+                <h3 className='text-2xl sm:text-3xl font-semibold text-orange-300'>{edu.title}</h3>
+                <p className='text-gray-300 text-sm sm:text-base'>{edu.institution}</p>
+                <p className='text-gray-400 text-sm sm:text-base'>{edu.duration}</p>
+                <p className='text-gray-300 mt-2 leading-relaxed text-sm sm:text-base'>{edu.description}</p> 
                 </div>
               </motion.div>
             )

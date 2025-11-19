@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Particles from "@/components/Particles";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +27,9 @@ export default function RootLayout({ children }) {
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased 
-        bg-gradient-to-b from-[#2b0000] via-[#8B0000]/90 to-black 
-        text-orange-50 selection:bg-amber-400 selection:text-gray-900 overflow-x-hidden`}
+        bg-[#0b0b0b] text-orange-50 selection:bg-amber-400 selection:text-gray-900 overflow-x-hidden`}
       >
+        <Particles count={70} />
         {children}
       </body>
     </html>

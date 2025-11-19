@@ -19,8 +19,8 @@ const Projects = () => {
                 return (
                     <motion.div
                         key={index}
-                        className="transform-gpu flex max-lg:flex-wrap p-4 sm:p-5 md:p-6 bg-black/60 backdrop-blur-lg rounded-2xl shadow-lg 
-                        gap-4 sm:gap-6 md:gap-8 transition-all duration-150 hover:duration-150 border border-orange-200/70"
+                        className="transform-gpu flex flex-col sm:flex-row p-3 sm:p-5 md:p-6 bg-black/60 backdrop-blur-lg rounded-2xl shadow-lg 
+                        gap-3 sm:gap-6 md:gap-8 transition-all duration-150 hover:duration-150 border border-orange-200/70"
                         initial={{ opacity: 0, y: 28 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         whileHover={{ scale: 1.055, boxShadow: '0 14px 34px rgba(0,0,0,0.5)', transition: { type: 'tween', duration: 0.14, ease: 'easeOut' } }}
@@ -33,16 +33,18 @@ const Projects = () => {
                         <img
                             src={project.img}
                             alt={project.title}
-                            className="h-48 sm:h-56 md:h-60 w-full max-w-[360px] object-cover rounded-2xl border-2 border-orange-200"
+                            className="w-full h-40 xs:h-44 sm:h-56 md:h-60 sm:max-w-[360px] object-cover rounded-2xl border-2 border-orange-200"
                         />
+
                         {/* Right: Content */}
                         <div className='flex flex-col justify-between flex-1 min-w-[240px]'>
                             <div className="flex flex-col gap-2">
                               {project.location && (
                                 <span className="self-start px-3 py-1 rounded-full bg-orange-100/90 text-black text-sm">{project.location}</span>
                               )}
-                              <h3 className="text-2xl sm:text-3xl font-semibold text-orange-300">{project.title}</h3>
-                              <p className="text-gray-300 text-sm sm:text-base">{project.description}</p>
+                              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-orange-300 text-balance">{project.title}</h3>
+                              <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{project.description}</p>
+
                               {/* Tags */}
                               <div className='flex flex-wrap gap-2 mt-2'>
                                 {project.tags && project.tags.map((tag, i) => (
@@ -52,13 +54,13 @@ const Projects = () => {
                             </div>
 
                             {/* Buttons row */}
-                            <div className='mt-4 flex gap-3 flex-wrap'>
+                            <div className='mt-3 sm:mt-4 flex gap-2 sm:gap-3 flex-wrap'>
                               {project.github && (
                                 <motion.a
                                   href={project.github}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center justify-center px-5 py-2 rounded-full bg-black text-orange-100 border border-orange-200/70 hover:bg-zinc-900"
+                                  className="inline-flex items-center justify-center px-4 sm:px-5 py-2 rounded-full bg-black text-orange-100 border border-orange-200/70 hover:bg-zinc-900 w-full sm:w-auto"
                                   whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.45)' }}
                                   whileTap={{ scale: 0.98 }}
                                 >
@@ -70,7 +72,7 @@ const Projects = () => {
                                   href={project.link}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center justify-center px-5 py-2 rounded-full bg-orange-200 text-black border border-orange-300 hover:bg-orange-300"
+                                  className="inline-flex items-center justify-center px-4 sm:px-5 py-2 rounded-full bg-orange-200 text-black border border-orange-300 hover:bg-orange-300 w-full sm:w-auto"
                                   whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.45)' }}
                                   whileTap={{ scale: 0.98 }}
                                 >
@@ -78,6 +80,7 @@ const Projects = () => {
                                 </motion.a>
                               )}
                             </div>
+
                         </div>
                         
                         </motion.div>
