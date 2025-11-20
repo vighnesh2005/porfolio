@@ -40,7 +40,7 @@ const Contact = () => {
   return (
     <section id='contact' className='flex flex-col items-center w-full min-h-screen px-4 sm:px-6 lg:px-10 py-10'>
       <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
-      bg-orange-200 text-black w-fit p-4  rounded-2xl "
+      bg-peach text-black w-fit p-4  rounded-2xl "
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 , ease: "easeInOut" }}
@@ -49,7 +49,7 @@ const Contact = () => {
 
       <div className='flex flex-col lg:flex-row gap-8 w-full py-5 justify-between max-w-6xl mx-auto'>
         <motion.div className='flex flex-col gap-4 p-6 bg-black rounded-2xl shadow-lg
-            text-white border border-orange-200/70 lg:w-1/2 w-full
+            text-white border border-peach/60 lg:w-1/2 w-full
         '
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -58,25 +58,25 @@ const Contact = () => {
             transition={{ duration: 0.8 , ease: "easeInOut" }}
             viewport={{ once: false, amount: 0.2 }}
         >
-            <h3 className='text-2xl font-bold mb-4 text-center text-amber-400'>Get in Touch</h3>
+            <h3 className='text-2xl font-bold mb-4 text-center text-peach'>Get in Touch</h3>
 
             <input type="text" placeholder='Name'
-                className='p-2 text-white border-[2px] border-orange-200 rounded-md
-                focus:outline-none focus:border-orange-400 transition-all duration-300 ease-in-out
+                className='p-2 text-white border-[2px] border-peach rounded-md
+                focus:outline-none focus:border-peach transition-all duration-300 ease-in-out
                 focus:bg-white focus:text-black'
                 value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}/>
             
             <input type="email" placeholder='Email'  
-                className='p-2 text-white border-[2px] border-orange-200 rounded-md
-                focus:outline-none focus:border-orange-400 transition-all duration-300 ease-in-out
+                className='p-2 text-white border-[2px] border-peach rounded-md
+                focus:outline-none focus:border-peach transition-all duration-300 ease-in-out
                 focus:bg-white focus:text-black'
             value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })}/>
             
             <textarea
                 placeholder="Message"
                 rows={4}
-                className="p-2 text-white border-2 border-orange-200 rounded-md
-                            focus:outline-none focus:border-orange-400 transition-all duration-300 ease-in-out
+                className="p-2 text-white border-2 border-peach rounded-md
+                            focus:outline-none focus:border-peach transition-all duration-300 ease-in-out
                             focus:bg-white focus:text-black resize-none"
                 value={formData.message}
                 onChange={(e) =>
@@ -85,8 +85,8 @@ const Contact = () => {
             />
 
             <button
-                className='p-2 text-white border-[2px] border-orange-200 rounded-md
-                hover:bg-white hover:text-black transition-all duration-300 ease-in-out'
+                className='p-2 text-black bg-peach border border-black/20 rounded-md
+                hover:opacity-95 transition-all duration-300 ease-in-out'
                 onClick={handleSubmit}
             >Send Email</button>
         </motion.div> 
@@ -99,7 +99,7 @@ const Contact = () => {
         >
             <motion.a
                 href="tel:+918309877916"
-                className="bg-black text-white p-4 rounded-lg shadow-lg border-2 border-orange-200 w-full"
+                className="bg-black text-white p-4 rounded-lg shadow-lg border-2 border-peach/60 w-full"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.5)' }}
@@ -109,14 +109,14 @@ const Contact = () => {
                 📞 Contact Me Via Phone No
             </motion.a>
             <motion.div
-                className="bg-black text-white p-4 rounded-lg shadow-lg border-2 border-orange-200 w-full"
+                className="bg-black text-white p-4 rounded-lg shadow-lg border-2 border-peach/60 w-full"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.5)' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
             >
-                 <h1 className='text-2xl font-bold text-orange-400 p-4'>My Socials</h1>
+                 <h1 className='text-2xl font-bold text-peach p-4'>My Socials</h1>
                  <motion.div
                            className="flex px-4 gap-5 items-center flex-wrap"
                            initial={{ opacity: 0, y: 50 }}
@@ -138,9 +138,9 @@ const Contact = () => {
                                  viewport={{ once: false, amount: 0.2 }}
                              >
                                  <Icon 
-                                 className="text-orange-200 bg-black p-2 h-12 w-12 rounded-lg
-                                     hover:scale-105 hover:rounded-xl hover:text-white border-2 border-orange-200
-                                     transition-all duration-300 ease-in-out hover:shadow-md hover:shadow-orange-200"
+                                 className="text-peach bg-black p-2 h-12 w-12 rounded-lg
+                                     hover:scale-105 hover:rounded-xl border-2 border-peach/60
+                                     transition-all duration-300 ease-in-out"
                                  />
                              </motion.a>
                              ))}

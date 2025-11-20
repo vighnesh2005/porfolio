@@ -97,6 +97,7 @@ export const projects = [
         title: "Portfolio",
         description:"A personal portfolio website showcasing my frontend and backend skills with a clean, responsive design. It features sections for technical skills, project details with links, and contact information for professional connections.",
         img: "/portfolio.png",
+        images: ["/portfolio.png"],
         link: "https://porfolio-xi-rosy.vercel.app/",
         github: "https://github.com/vighnesh2005/porfolio",
         tags: ["HTML", "CSS", "JavaScript", "React"]
@@ -105,6 +106,7 @@ export const projects = [
         title: "RealEstate",
         description: "A real estate website featuring comprehensive property listings with detailed information, photos, and pricing. It includes robust search and filter options to help users quickly find properties that meet their specific criteria.",
         img: "/realestate.png",
+        images: ["/realestate.png"],
         link: "",
         github: "https://github.com/vighnesh2005/realestate",
         tags: ["HTML", "CSS", "JavaScript", "react", "Node.js", "supabase"]
@@ -113,6 +115,7 @@ export const projects = [
         title: "CodeBuddy",
         description: "CodeBuddy is a coding platform for practicing Data Structures and Algorithms with live contests, real-time ranking, and community discussions to help learners improve their skills efficiently.  ",
         img: "/codebuddy.png",
+        images: ["/codebuddy.png"],
         link: "https://codebuddy-1wcn.vercel.app/",
         github: "https://github.com/vighnesh2005/Codebuddy",
         tags: ["HTML", "CSS", "JavaScript", "next.js", "Node.js", "MongoDB"]
@@ -142,3 +145,4 @@ export const education = [
         image: "/athena_school.avif"
     }
 ]
+

@@ -17,4 +17,16 @@
 
 body {
   scroll-behavior: smooth;
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(64, 0, 128, 0.25), transparent 60%),
+              radial-gradient(1000px 500px at 80% 20%, rgba(255, 94, 0, 0.15), transparent 65%),
+              radial-gradient(800px 400px at 50% 90%, rgba(0, 120, 160, 0.18), transparent 60%),
+              linear-gradient(180deg, #0b0f17 0%, #0a0a0a 100%);
+  color: #eaeaea;
 }
+
+/* Palette utilities inspired by reference */
+.bg-peach { background-color: #F4D2A8; }
+.bg-peach-soft { background-color: #F9E9D1; }
+.bg-mint { background-color: #A7E3D8; }
+.text-peach { color: #F4D2A8; }
+.border-peach { border-color: #F4D2A8; }

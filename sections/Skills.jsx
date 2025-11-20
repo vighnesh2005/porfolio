@@ -16,7 +16,7 @@ const Skills = () => {
   return (
     <section id="skills" className="w-full px-4 sm:px-6 lg:px-10 py-10 flex flex-col items-center min-h-screen mt-5">
       <motion.h2 className="text-4xl font-bold text-center mb-8 font-rock tracking-widest
-      bg-orange-200 text-black w-fit p-3 rounded-2xl"
+      bg-peach text-black w-fit p-3 rounded-2xl"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 , ease: "easeInOut" }}
@@ -30,7 +30,7 @@ const Skills = () => {
               key={index}
               className={`px-4 py-2 rounded-lg font-bebas transition-colors duration-300 font-bold tracking-widest
               text-xl 
-              ${activeCategory === category ? 'bg-orange-500 text-black shadow-lg' : 'bg-orange-100 text-[#4b1b16] hover:bg-orange-200'}`}
+              ${activeCategory === category ? 'bg-peach text-black shadow-lg' : 'bg-peach-soft text-[#3b2f1e] hover:bg-peach'}`}
               onClick={() => setActiveCategory(category)}
               whileHover={{ scale: 1.06, boxShadow: '0 10px 28px rgba(0,0,0,0.35)' }}
               whileTap={{ scale: 0.98 }}
@@ -49,8 +49,8 @@ const Skills = () => {
         {skills.filter(skill => activeCategory === "all" || skill.type.includes(activeCategory)).map((skill, index) => (
           <motion.div
             key={index}
-            className="flex flex-col items-center p-3 bg-[#FFE0B5] text-black border border-orange-300/70
-            hover:bg-[#FFC47D] transition-all
+            className="flex flex-col items-center p-3 bg-peach-soft text-black border border-peach/70
+            hover:bg-peach transition-all
             rounded-xl shadow-lg hover:shadow-xl duration-300 "
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -16,12 +16,12 @@ const socialLinks = [
     <section
       id="home"
       className="relative overflow-hidden flex flex-col md:flex-row items-center justify-center min-h-screen 
-        px-4 md:px-8 lg:px-10 pt-24 pb-16 md:pt-32 gap-10"
+        px-4 md:px-8 lg:px-10 pt-12 pb-16 md:pt-10 gap-10"
     >
       {/* Decorative background glow */}
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-60">
-        <div className="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-orange-500/30 blur-3xl" />
-        <div className="absolute -bottom-40 -right-20 h-80 w-80 rounded-full bg-red-800/40 blur-3xl" />
+        <div className="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-[#5B1FA6]/30 blur-3xl" />
+        <div className="absolute -bottom-40 -right-20 h-80 w-80 rounded-full bg-[#007a99]/30 blur-3xl" />
       </div>
       
       {/* Image Section */}
@@ -50,9 +50,8 @@ const socialLinks = [
         viewport={{ once: false, amount: 0.2 }}
       >
         <motion.h1 
-        
-          className="font-rock text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black bg-orange-200 
-          px-6 sm:px-8 py-6 sm:py-8 rounded-xl tracking-wider leading-tight"
+          className="font-rock text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black bg-peach 
+          px-6 sm:px-8 py-6 sm:py-8 rounded-xl tracking-wider leading-tight shadow-[0_6px_0_rgba(0,0,0,0.4)]"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: "easeIn" }}
@@ -63,7 +62,7 @@ const socialLinks = [
 
         <motion.h2 
           className="text-2xl sm:text-3xl md:text-4xl text-black mb-8 font-bold tracking-wide font-rock 
-          bg-orange-100/90 rounded-lg px-4 sm:px-6 py-3 sm:py-4 shadow-md"
+          bg-mint rounded-lg px-4 sm:px-6 py-3 sm:py-4 shadow-md"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: "easeIn" }}
@@ -94,14 +93,14 @@ const socialLinks = [
                 whileTap={{ scale: 0.98 }}
             >
                 <Icon 
-                className="text-orange-200 bg-black p-2 h-14 w-14 rounded-lg
-                    hover:scale-105 hover:shadow-md hover:shadow-orange-200"
+                className="text-peach bg-black p-2 h-14 w-14 rounded-lg border border-peach/50
+                    hover:scale-105 hover:shadow-md"
                 />
             </motion.a>
             ))}
-            <motion.a href="#contact" className="text-orange-200 bg-black p-3 rounded-2xl
+            <motion.a href="#contact" className="text-black bg-peach p-3 rounded-2xl border border-black/20
             hover:scale-105 hover:rounded-xl transition-all duration-300 ease-in-out
-            hover:text-white text-lg font-semibold tracking-wider hover:shadow-md hover:shadow-orange-200"
+            hover:text-black text-lg font-semibold tracking-wider hover:shadow-md"
             initial={{ opacity: 0, y:20 }}
                 whileInView={{ opacity: 1, y:0 }}
                 transition={{ duration: 1, ease: 'easeInOut' }}
