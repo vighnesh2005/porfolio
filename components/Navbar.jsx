@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const menuRef = useRef(null) // Ref for the mobile menu
+  const menuRef = useRef(null)
 
   const links = [
     { name: 'Home', href: '#home' },
@@ -15,7 +15,6 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ]
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -36,50 +35,46 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className='sticky top-0 z-50 bg-black/40 backdrop-blur-lg border-b border-orange-200/20'
+      className='sticky top-0 z-50 bg-[#0B1026]/80 backdrop-blur-md border-b border-[#F5D04C]/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
     >
-      <div className='max-w-6xl mx-auto flex justify-between items-center px-4 md:px-8 py-3'>
+      <div className='max-w-7xl mx-auto flex justify-between items-center px-6 md:px-10 py-4'>
         {/* Logo */}
         <motion.a
-          className='font-great text-lg sm:text-xl md:text-2xl text-orange-200 font-bold tracking-widest
-          hover:text-white transition-all duration-300 ease-in-out'
+          className='font-cinzel text-xl sm:text-2xl md:text-3xl text-[#F5D04C] font-bold tracking-wider
+          hover:text-[#F2E8C9] transition-all duration-300 ease-in-out drop-shadow-[0_0_5px_rgba(245,208,76,0.5)]'
           href="#home"
-          whileHover={{ scale: 1.07, boxShadow: '0 10px 30px rgba(0,0,0,0.45)' }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
         >
           Vighnesh Prasad
         </motion.a>
 
         {/* Desktop Links */}
-        <div className='hidden md:flex'>
+        <div className='hidden lg:flex items-center space-x-8'>
           {links.map((link, index) => (
             <motion.a
               key={index}
               href={link.href}
-              className='mx-3 lg:mx-4 text-orange-200 font-semibold
-              hover:text-white transition-all duration-500 ease-in-out  
-              text-base lg:text-lg font-bebas tracking-widest
-              relative after:content-[""] after:absolute after:h-0.5 after:w-0 after:bg-[#FFE5E5]
-              after:bottom-0 after:left-0 after:rounded-full
-              hover:after:w-full after:transition-all after:duration-300 after:ease-in-out'
-              whileHover={{ scale: 1.07, boxShadow: '0 10px 30px rgba(0,0,0,0.4)' }}
-              whileTap={{ scale: 0.98 }}
+              className='text-[#F2E8C9] font-medium text-lg tracking-wide relative group font-cinzel'
+              whileHover={{ scale: 1.1, color: '#F5D04C' }}
+              whileTap={{ scale: 0.95 }}
             >
               {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#F5D04C] transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#F5D04C]"></span>
             </motion.a>
           ))}
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className='md:hidden text-orange-200 hover:text-white transition-all duration-300'
+          className='lg:hidden text-[#F5D04C] hover:text-[#F2E8C9] transition-colors duration-300'
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
       </div>
 
@@ -87,23 +82,28 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            ref={menuRef} // Attach ref
+            ref={menuRef}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className='fixed top-0 right-0 w-3/4 sm:w-2/3 h-screen bg-gradient-to-b from-black/95 via-black/90 to-[#210000] 
-            backdrop-blur-xl p-6 flex flex-col items-start space-y-6 z-50 shadow-[0_0_40px_rgba(0,0,0,0.9)] border-l border-orange-200/30'
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className='fixed top-0 right-0 w-3/4 sm:w-1/2 h-screen bg-[#1B2440] 
+            backdrop-blur-xl p-8 flex flex-col items-start space-y-8 z-50 shadow-[-10px_0_30px_rgba(0,0,0,0.5)] border-l border-[#F5D04C]/30'
           >
+            <div className="w-full flex justify-end mb-4">
+              <button onClick={() => setIsOpen(false)} className="text-[#F5D04C]">
+                <X size={32} />
+              </button>
+            </div>
             {links.map((link, index) => (
               <motion.a
                 key={index}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.07 }}
-                className='text-orange-200 text-lg sm:text-xl font-bebas tracking-widest hover:text-white transition-all duration-300'
+                transition={{ delay: index * 0.1 }}
+                className='text-[#F2E8C9] text-2xl font-cinzel tracking-widest hover:text-[#F5D04C] transition-colors duration-300'
               >
                 {link.name}
               </motion.a>

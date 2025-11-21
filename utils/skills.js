@@ -103,22 +103,29 @@ export const projects = [
         tags: ["HTML", "CSS", "JavaScript", "React"]
     },
     {
-        title: "RealEstate",
-        description: "A real estate website featuring comprehensive property listings with detailed information, photos, and pricing. It includes robust search and filter options to help users quickly find properties that meet their specific criteria.",
-        img: "/realestate.png",
-        images: ["/realestate.png"],
+        title: "Gathr",
+        description: "Gathr is a streamlined web platform designed for seamless customer-merchant-delivery interactions. It offers fast browsing, easy navigation, and a clean interface for managing orders, tracking deliveries, and exploring products. Built with modern tech and hosted on Vercel, Gathr ensures smooth performance and a user-friendly experience across devices. Perfect for users who want a simple, intuitive, and reliable shopping and delivery flow.",
+        img: "/gather-1.png",
+        images: ["/gather-1.png","gather-2.png","gather-3.png","gather-4.png"],
         link: "",
         github: "https://github.com/vighnesh2005/realestate",
-        tags: ["HTML", "CSS", "JavaScript", "react", "Node.js", "supabase"]
+        tags: [ "next-js", "Node.js", "supabase", "clerk", "cloudinary  "]
     },
     {
         title: "CodeBuddy",
         description: "CodeBuddy is a coding platform for practicing Data Structures and Algorithms with live contests, real-time ranking, and community discussions to help learners improve their skills efficiently.  ",
         img: "/codebuddy.png",
-        images: ["/codebuddy.png"],
+        images: ["/codebuddy.png","codebuddy-2.png","codebuddy-3.png","codebuddy-4.png"],
         link: "https://codebuddy-1wcn.vercel.app/",
         github: "https://github.com/vighnesh2005/Codebuddy",
         tags: ["HTML", "CSS", "JavaScript", "next.js", "Node.js", "MongoDB"]
+    },
+    {
+        title: "Onlinr File Management System",
+        description: "Online File Management System is a robust web application designed for seamless document organization, storage, and retrieval. It features an intuitive interface that lets users upload, categorize, search, and share files securely. Built using modern web technologies, the platform ensures smooth performance across devices and real-time updates to enable efficient collaboration. Ideal for individuals and small teams looking for a simple, reliable, and flexible solution to manage digital assets in one centralized hub.",
+        images:["ofms-1.png","ofms-2.png","ofms-3.png","ofms-4.png"],
+        github: "https://github.com/vighnesh2005/Online-file-management-system",
+        tags: ["next.js", "FastAPI", "sqlite-3","Judge-0"]
     }
 ]
 
