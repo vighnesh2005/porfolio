@@ -1,172 +1,166 @@
 "use client";
-import React from 'react'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { Github, Linkedin, Mail, FileText } from 'lucide-react'
+import React, { useState, useRef, useLayoutEffect } from "react";
+import { Github, Linkedin, Mail, FileText, Send } from "lucide-react";
 import axios from "axios";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 
 const socialLinks = [
     { href: "https://www.linkedin.com/in/vighnesh-prasad-3ba56a2a5", icon: Linkedin, label: "LinkedIn" },
     { href: "mailto:vighneshprasad12@gmail.com", icon: Mail, label: "Email" },
     { href: "https://github.com/vighnesh2005", icon: Github, label: "GitHub" },
-    { href: "/resume.pdf", icon: FileText, label: "Resume", download: true }
-]
+    { href: "/resume.pdf", icon: FileText, label: "Resume", download: true },
+];
 
 const Contact = () => {
+    const containerRef = useRef(null);
+    const formRef = useRef(null);
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
+        name: "",
+        email: "",
+        message: "",
     });
+    const [status, setStatus] = useState("");
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo(containerRef.current,
+                { opacity: 0, y: 100 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top 80%",
+                        end: "top 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+
+            gsap.fromTo(".contact-item",
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: formRef.current,
+                        start: "top 85%",
+                    }
+                }
+            );
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setStatus("sending");
         try {
-            const response = await axios.post('/api/send-email', {
-                name: formData.name,
-                email: formData.email,
-                message: formData.message
-            });
-
-            alert(response.data.message || 'Email sent successfully');
+            const response = await axios.post("/api/send-email", formData);
+            setStatus("success");
+            alert(response.data.message || "Email sent successfully");
+            setFormData({ name: "", email: "", message: "" });
         } catch (error) {
-            console.error('Error sending email:', error);
-            alert('An error occurred while sending the email.');
+            console.error("Error sending email:", error);
+            setStatus("error");
+            alert("An error occurred while sending the email.");
         }
     };
 
-
     return (
-        <section id='contact' className='flex flex-col items-center w-full min-h-screen px-4 sm:px-6 lg:px-10 py-20 relative overflow-hidden'>
-            {/* Background decorative elements */}
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10">
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#F5D04C]/5 rounded-full blur-3xl"></div>
-                <div className="absolute top-20 left-20 w-72 h-72 bg-[#4B6CB7]/5 rounded-full blur-3xl"></div>
-            </div>
+        <section
+            ref={containerRef}
+            id="contact"
+            className="relative min-h-screen py-32 px-4 sm:px-8 md:px-16 section-black flex flex-col justify-center overflow-hidden z-20"
+        >
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                {/* Left: Typography */}
+                <div className="flex flex-col justify-center">
+                    <h2 className="text-7xl md:text-9xl font-bebas text-[#FFFCE1] leading-[0.8] tracking-tighter mb-8">
+                        LET'S <br />
+                        <span className="text-gray-500">TALK</span>
+                    </h2>
+                    <p className="text-xl md:text-2xl font-tinos text-gray-400 max-w-md italic">
+                        Have a project in mind? Let's build something extraordinary together.
+                    </p>
 
-            <motion.div
-                className="text-center mb-16"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.2 }}
-            >
-                <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-[#F5D04C] tracking-widest mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    Correspondence
-                </h2>
-                <div className="h-1 w-24 bg-[#F5D04C] mx-auto rounded-full shadow-[0_0_10px_#F5D04C]"></div>
-            </motion.div>
+                    <div className="flex gap-6 mt-12">
+                        {socialLinks.map(({ href, icon: Icon, label, download }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                target={download ? "_self" : "_blank"}
+                                rel={download ? undefined : "noopener noreferrer"}
+                                download={download}
+                                className="p-4 rounded-full border border-[#FFFCE1]/20 text-[#FFFCE1] hover:bg-[#FFFCE1] hover:text-black transition-all duration-300 group"
+                            >
+                                <Icon size={24} className="group-hover:scale-110 transition-transform" />
+                            </a>
+                        ))}
+                    </div>
+                </div>
 
-            <div className='flex flex-col lg:flex-row gap-12 w-full py-5 justify-between max-w-6xl mx-auto items-start'>
-
-                {/* Contact Form - Vintage Paper / Canvas Style */}
-                <motion.div className='flex flex-col gap-6 p-8 bg-[#1B2440]/40 backdrop-blur-md rounded-sm shadow-2xl
-            text-[#F2E8C9] border border-[#F5D04C]/30 lg:w-1/2 w-full relative group'
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    viewport={{ once: false, amount: 0.2 }}
-                >
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#F5D04C] to-transparent opacity-50"></div>
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#F5D04C] to-transparent opacity-50"></div>
-
-                    <h3 className='text-2xl font-cinzel font-bold mb-2 text-[#F5D04C] text-center'>Send a Letter</h3>
-
-                    <div className="space-y-6">
-                        <div className="relative">
-                            <input type="text" placeholder='Name'
-                                className='w-full p-3 bg-transparent border-b-2 border-[#F5D04C]/30 text-[#F2E8C9] placeholder-[#F2E8C9]/40
-                        focus:outline-none focus:border-[#F5D04C] transition-all duration-300 font-sans text-lg'
-                                value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-                        </div>
-
-                        <div className="relative">
-                            <input type="email" placeholder='Email'
-                                className='w-full p-3 bg-transparent border-b-2 border-[#F5D04C]/30 text-[#F2E8C9] placeholder-[#F2E8C9]/40
-                        focus:outline-none focus:border-[#F5D04C] transition-all duration-300 font-sans text-lg'
-                                value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-                        </div>
-
-                        <div className="relative">
-                            <textarea
-                                placeholder="Message"
-                                rows={5}
-                                className="w-full p-3 bg-transparent border-b-2 border-[#F5D04C]/30 text-[#F2E8C9] placeholder-[#F2E8C9]/40
-                                    focus:outline-none focus:border-[#F5D04C] transition-all duration-300 font-sans text-lg resize-none"
-                                value={formData.message}
-                                onChange={(e) =>
-                                    setFormData((prev) => ({ ...prev, message: e.target.value }))
-                                }
+                {/* Right: Form */}
+                <div ref={formRef} className="flex flex-col justify-center">
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                        <div className="contact-item space-y-2">
+                            <label className="text-sm font-mono text-gray-500 uppercase tracking-widest">Name</label>
+                            <input
+                                type="text"
+                                required
+                                className="w-full bg-transparent border-b border-[#FFFCE1]/20 py-4 text-xl text-[#FFFCE1] focus:border-[#FFFCE1] focus:outline-none transition-colors"
+                                placeholder="John Doe"
+                                value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             />
                         </div>
-                    </div>
 
-                    <motion.button
-                        className='mt-4 py-3 px-8 self-center bg-[#F5D04C] text-[#05070A] font-cinzel font-bold tracking-widest rounded-sm
-                shadow-[0_0_20px_rgba(245,208,76,0.3)] hover:bg-[#c5a059] transition-all duration-300 relative overflow-hidden'
-                        onClick={handleSubmit}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <span className="relative z-10">Send Message</span>
-                        <div className="absolute inset-0 bg-white/20 translate-y-full hover:translate-y-0 transition-transform duration-300"></div>
-                    </motion.button>
-                </motion.div>
+                        <div className="contact-item space-y-2">
+                            <label className="text-sm font-mono text-gray-500 uppercase tracking-widest">Email</label>
+                            <input
+                                type="email"
+                                required
+                                className="w-full bg-transparent border-b border-[#FFFCE1]/20 py-4 text-xl text-[#FFFCE1] focus:border-[#FFFCE1] focus:outline-none transition-colors"
+                                placeholder="john@example.com"
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            />
+                        </div>
 
-                {/* Contact Info & Socials */}
-                <motion.div className='lg:w-1/2 w-full flex flex-col gap-8'
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    viewport={{ once: false, amount: 0.2 }}
-                >
-                    <motion.a
-                        href="tel:+918309877916"
-                        className="group flex items-center justify-center gap-4 p-6 bg-[#1B2440]/40 backdrop-blur-sm border border-[#F5D04C]/30 rounded-sm
-                hover:bg-[#1B2440]/60 transition-all duration-300 shadow-lg"
-                        whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(245, 208, 76, 0.15)' }}
-                        whileTap={{ scale: 0.98 }}
-                    >
-                        <span className="text-2xl">📞</span>
-                        <span className="text-xl font-cinzel text-[#F2E8C9] group-hover:text-[#F5D04C] transition-colors">+91 83098 77916</span>
-                    </motion.a>
+                        <div className="contact-item space-y-2">
+                            <label className="text-sm font-mono text-gray-500 uppercase tracking-widest">Message</label>
+                            <textarea
+                                rows={4}
+                                required
+                                className="w-full bg-transparent border-b border-[#FFFCE1]/20 py-4 text-xl text-[#FFFCE1] focus:border-[#FFFCE1] focus:outline-none transition-colors resize-none"
+                                placeholder="Tell me about your project..."
+                                value={formData.message}
+                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                            />
+                        </div>
 
-                    <motion.div
-                        className="p-8 bg-[#1B2440]/40 backdrop-blur-sm border border-[#F5D04C]/30 rounded-sm shadow-lg flex flex-col items-center"
-                        whileHover={{ boxShadow: '0 0 20px rgba(245, 208, 76, 0.15)' }}
-                    >
-                        <h1 className='text-2xl font-cinzel font-bold text-[#F5D04C] mb-8'>Connect Elsewhere</h1>
-                        <motion.div
-                            className="flex gap-8 items-center flex-wrap justify-center"
+                        <button
+                            type="submit"
+                            disabled={status === "sending"}
+                            className="contact-item mt-8 px-8 py-4 bg-[#FFFCE1] text-black font-bebas text-2xl tracking-wide hover:bg-[#FFFCE1]/90 transition-all duration-300 flex items-center gap-3 disabled:opacity-50"
                         >
-                            {socialLinks.map(({ href, icon: Icon, label, download }, index) => (
-                                <motion.a
-                                    key={label}
-                                    href={href}
-                                    aria-label={label}
-                                    target={download ? "_self" : "_blank"}
-                                    rel={download ? undefined : "noopener noreferrer"}
-                                    {...(download ? { download: "" } : {})}
-                                    whileHover={{ scale: 1.2, rotate: 5 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    className="group relative"
-                                >
-                                    <div className="absolute inset-0 bg-[#F5D04C] blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-full"></div>
-                                    <Icon
-                                        className="relative text-[#F2E8C9] h-10 w-10 group-hover:text-[#F5D04C] transition-colors duration-300"
-                                    />
-                                </motion.a>
-                            ))}
-                        </motion.div>
-                    </motion.div>
-                </motion.div>
-
+                            {status === "sending" ? "SENDING..." : "SEND MESSAGE"}
+                            <Send size={20} />
+                        </button>
+                    </form>
+                </div>
             </div>
-
-
         </section>
-    )
-}
+    );
+};
 
-export default Contact
+export default Contact;

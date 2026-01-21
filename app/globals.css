@@ -1,81 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --color-midnight: #0B1026;
-  --color-deep-blue: #1B2440;
-  --color-star-yellow: #F5D04C;
-  --color-moon-glow: #F2E8C9;
-  --color-swirl-blue: #4B6CB7;
-  --color-cypress-black: #05070A;
-  --font-cinzel: 'Cinzel', serif;
+  --background: #000000;
+  --foreground: #FFFCE1;
+  --accent: #333333;
+
+  /* Fonts */
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-tinos: 'Tinos', serif;
+  --font-climate: 'Climate Crisis', cursive;
 }
 
-.font-great{
-    font-family: 'Great Vibes', cursive;
+/* User Requested Font Classes */
+.climate-crisis-regular {
+  font-family: var(--font-climate);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "YEAR" 1979;
 }
 
-.font-bebas{
-    font-family: 'Bebas Neue', cursive;
-}
-
-.font-rock {
-  font-family: "Rock Salt", cursive;
-  font-weight:bolder;
+.bebas-neue-regular {
+  font-family: var(--font-bebas);
+  font-weight: 400;
   font-style: normal;
 }
 
-.font-cinzel {
-  font-family: var(--font-cinzel);
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+
+  --font-bebas: var(--font-bebas);
+  --font-tinos: var(--font-tinos);
+  --font-climate: var(--font-climate);
 }
 
 body {
-  scroll-behavior: smooth;
-  background-color: var(--color-midnight);
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(75, 108, 183, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(245, 208, 76, 0.15) 0%, transparent 30%),
-    radial-gradient(circle at 20% 80%, rgba(27, 36, 64, 0.4) 0%, transparent 50%);
-  color: var(--color-moon-glow);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-tinos);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Starry Night Utilities */
-.text-gold { color: var(--color-star-yellow); }
-.bg-midnight { background-color: var(--color-midnight); }
-.bg-deep-blue { background-color: var(--color-deep-blue); }
-.border-gold { border-color: var(--color-star-yellow); }
-
-.gold-glow {
-  box-shadow: 0 0 15px rgba(245, 208, 76, 0.3);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-bebas);
+  text-transform: uppercase;
+  line-height: 0.9;
 }
 
-.museum-frame {
-  border: 8px solid #2a2a2a;
-  box-shadow: 
-    inset 0 0 20px rgba(0,0,0,0.8),
-    0 10px 30px rgba(0,0,0,0.5);
-  position: relative;
+/* Sections */
+.section-black {
+  background-color: #000000;
+  color: #ffffff;
 }
 
-.museum-frame::after {
-  content: '';
-  position: absolute;
-  top: -8px; left: -8px; right: -8px; bottom: -8px;
-  border: 2px solid #c5a059; /* Gold inner trim */
+.section-white {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Lenis Smooth Scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-midnight);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-swirl-blue);
-  border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-star-yellow);
 }

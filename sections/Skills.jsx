@@ -1,84 +1,118 @@
-"use client"
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { skills } from '@/utils/skills'
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import { skills } from "@/utils/skills";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Skills = () => {
-  const categories = [
-    "all",
-    "Frontend",
-    "Backend",
-    "Languages",
-    "Tools"
-  ];
+  const containerRef = useRef(null);
   const [activeCategory, setActiveCategory] = useState("all");
 
+  const categories = ["all", "Frontend", "Backend", "Languages", "Tools"];
+
+  // Filter skills based on active category
+  const filteredSkills = skills.filter(
+    (skill) => activeCategory === "all" || skill.type.includes(activeCategory)
+  );
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate the container entrance
+      gsap.fromTo(
+        containerRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+
+      // Staggered Grid Animation
+      gsap.fromTo(
+        ".skill-item",
+        { opacity: 0, scale: 0, rotation: -15 },
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 0.5,
+          stagger: {
+            amount: 0.5,
+            grid: "auto",
+            from: "center",
+          },
+          ease: "back.out(1.5)",
+          overwrite: "auto",
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [activeCategory]);
+
   return (
-    <section id="skills" className="w-full px-4 sm:px-6 lg:px-10 py-20 flex flex-col items-center min-h-screen relative">
+    <section
+      ref={containerRef}
+      id="skills"
+      className="relative min-h-screen py-20 px-4 sm:px-8 section-white flex flex-col items-center justify-center z-20"
+    >
+      <div className="max-w-6xl w-full z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-6xl md:text-8xl font-bebas text-black tracking-tighter mb-8">
+            TECHNICAL <span className="text-gray-500">ARSENAL</span>
+          </h2>
 
-      <motion.div
-        className="text-center mb-12"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: false, amount: 0.2 }}
-      >
-        <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-[#F5D04C] tracking-widest mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-          Technical Skills
-        </h2>
-        <div className="h-1 w-24 bg-[#F5D04C] mx-auto rounded-full shadow-[0_0_10px_#F5D04C]"></div>
-      </motion.div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-5 py-2 rounded-full font-mono text-xs uppercase tracking-widest transition-all duration-300 border ${activeCategory === cat
+                    ? "bg-black text-white border-black shadow-lg scale-105"
+                    : "bg-transparent text-gray-500 border-black/10 hover:border-black hover:text-black"
+                  }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
 
-      <motion.div className='flex flex-wrap justify-center gap-4 sm:gap-6 mb-12 max-w-4xl w-full'>
-        {categories.map((category, index) => {
-          return (
-            <motion.button
-              key={index}
-              className={`px-6 py-2 rounded-full font-cinzel font-bold tracking-wider transition-all duration-300 border
-              ${activeCategory === category
-                  ? 'bg-[#F5D04C] text-[#05070A] border-[#F5D04C] shadow-[0_0_15px_rgba(245,208,76,0.4)]'
-                  : 'bg-transparent text-[#F2E8C9] border-[#F5D04C]/30 hover:border-[#F5D04C] hover:text-[#F5D04C]'}`}
-              onClick={() => setActiveCategory(category)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-              viewport={{ once: false, amount: 0.2 }}
+        {/* Compact Grid Layout */}
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 md:gap-8 w-full mx-auto justify-items-center">
+          {filteredSkills.map((skill, index) => (
+            <div
+              key={`${skill.title}-${index}`}
+              className="skill-item flex flex-col items-center justify-center gap-3 group w-24"
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </motion.button>
-          )
-        })}
-      </motion.div>
+              <div className="relative w-24 h-24 bg-white rounded-2xl border border-black/5 flex items-center justify-center shadow-sm group-hover:shadow-xl group-hover:border-black/20 transition-all duration-300 group-hover:-translate-y-2 overflow-hidden">
+                <div className="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="w-12 h-12 relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <img
+                    src={skill.colored}
+                    alt={skill.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
 
-      <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-6xl w-full">
-        {skills.filter(skill => activeCategory === "all" || skill.type.includes(activeCategory)).map((skill, index) => (
-          <motion.div
-            key={index}
-            className="flex flex-col items-center p-4 bg-[#1B2440]/40 backdrop-blur-sm border border-[#F5D04C]/20
-            rounded-xl hover:bg-[#1B2440]/60 hover:border-[#F5D04C]/50 transition-all duration-300 group relative overflow-hidden"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            whileHover={{ y: -5 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20, delay: index * 0.02 }}
-            viewport={{ once: false, amount: 0.1 }}
-          >
-            {/* Glow effect */}
-            <div className="absolute inset-0 bg-[#F5D04C]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-            <div className="relative z-10 p-2 bg-white rounded-full mb-3 group-hover:scale-110 transition-transform duration-300">
-              <img src={skill.colored} alt={skill.title} className="w-10 h-10 object-contain" />
+              <span className="text-[10px] font-mono text-gray-400 group-hover:text-black uppercase tracking-wider text-center transition-colors duration-300">
+                {skill.title}
+              </span>
             </div>
-            <h3 className="relative z-10 text-sm sm:text-base font-semibold text-[#F2E8C9] text-center group-hover:text-[#F5D04C] transition-colors">
-              {skill.title}
-            </h3>
-          </motion.div>
-        ))}
-      </motion.div>
-
+          ))}
+        </div>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;

@@ -1,85 +1,118 @@
-"use client"
-import React from 'react'
-import { motion } from 'framer-motion'
-import { education } from '@/utils/skills.js';
+"use client";
+import React, { useLayoutEffect, useRef } from "react";
+import { education } from "@/utils/skills.js";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Education = () => {
+  const sectionRef = useRef(null);
+  const triggerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = sectionRef.current;
+
+      const getScrollAmount = () => -(cards.scrollWidth - window.innerWidth);
+
+      const tween = gsap.to(cards, {
+        x: getScrollAmount,
+        ease: "none",
+      });
+
+      ScrollTrigger.create({
+        trigger: triggerRef.current,
+        start: "top top",
+        end: () => `+=${cards.scrollWidth}`,
+        pin: true,
+        pinSpacing: true,
+        animation: tween,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
+      });
+    }, triggerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id='education' className='flex flex-col items-center w-full min-h-screen px-4 sm:px-6 lg:px-10 py-20 relative'>
-
-      <motion.div
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: false, amount: 0.2 }}
+    <section
+      ref={triggerRef}
+      id="education"
+      className="relative h-screen overflow-hidden bg-black section-black z-30"
+    >
+      <div
+        ref={sectionRef}
+        className="flex h-full w-fit items-center px-12 md:px-24 gap-12 md:gap-24 will-change-transform"
       >
-        <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-[#F5D04C] tracking-widest mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-          Education
-        </h2>
-        <div className="h-1 w-24 bg-[#F5D04C] mx-auto rounded-full shadow-[0_0_10px_#F5D04C]"></div>
-      </motion.div>
 
-      <div className='w-full max-w-5xl mx-auto relative'>
-        {/* Vertical Line */}
-        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-[#F5D04C]/30 transform md:-translate-x-1/2 hidden md:block"></div>
+        {/* Title Card */}
+        <div className="flex-shrink-0 w-[80vw] md:w-[40vw] flex flex-col justify-center relative">
+          <h2 className="text-7xl md:text-9xl font-bebas text-[#FFFCE1] tracking-tighter leading-none relative z-10">
+            EDUCATION <br />
+            <span className="text-gray-500">JOURNEY</span>
+          </h2>
+          <p className="mt-8 text-xl text-gray-400 font-tinos italic max-w-md relative z-10">
+            My academic path and the milestones that shaped my technical expertise.
+          </p>
 
-        <div className='flex flex-col gap-12'>
-          {
-            education.map((edu, index) => {
-              const isEven = index % 2 === 0;
-              return (
-                <motion.div
-                  key={index}
-                  className={`flex flex-col md:flex-row gap-8 items-center ${isEven ? 'md:flex-row-reverse' : ''}`}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                >
-                  {/* Content Card */}
-                  <div className="w-full md:w-1/2">
-                    <div className={`bg-[#1B2440]/60 backdrop-blur-md p-6 md:p-8 rounded-sm border border-[#F5D04C]/20 shadow-xl relative group
-                     hover:border-[#F5D04C]/50 transition-all duration-300
-                     ${isEven ? 'md:text-left' : 'md:text-right'}`}>
-
-                      {/* Connector Dot (Desktop) */}
-                      <div className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-[#F5D04C] rounded-full shadow-[0_0_10px_#F5D04C] hidden md:block
-                        ${isEven ? '-right-[42px]' : '-left-[42px]'}`}></div>
-
-                      <h3 className='text-2xl font-cinzel font-bold text-[#F5D04C] mb-2'>{edu.title}</h3>
-                      <h4 className='text-xl text-[#F2E8C9] font-medium mb-1'>{edu.institution}</h4>
-                      <span className='inline-block px-3 py-1 bg-[#4B6CB7]/20 text-[#F2E8C9] text-xs tracking-widest border border-[#4B6CB7]/30 rounded-full mb-4 font-cinzel'>
-                        {edu.duration}
-                      </span>
-                      <p className='text-[#F2E8C9]/80 text-sm leading-relaxed font-sans'>
-                        {edu.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Image/Icon (Optional - if education object has image) */}
-                  <div className="w-full md:w-1/2 flex justify-center md:justify-center">
-                    {edu.image && (
-                      <div className="relative w-full max-w-[300px] aspect-video overflow-hidden rounded-sm border-2 border-[#c5a059] shadow-lg group bg-white">
-                        <img
-                          src={edu.image}
-                          alt={edu.title}
-                          className='w-full h-full object-contain transition-transform duration-700 group-hover:scale-110'
-                        />
-                        <div className="absolute inset-0 bg-[#0B1026]/10 group-hover:bg-transparent transition-colors duration-300"></div>
-                      </div>
-                    )}
-                  </div>
-
-                </motion.div>
-              )
-            })
-          }
+          {/* Connecting Line Start */}
+          <div className="absolute top-1/2 right-[-6rem] md:right-[-12rem] w-24 md:w-48 h-[2px] bg-[#FFFCE1]/20"></div>
         </div>
+
+        {/* Education Cards */}
+        {education.map((edu, index) => (
+          <div key={index} className="relative flex items-center">
+            {/* Connecting Line (Before) */}
+            <div className="absolute top-1/2 left-[-3rem] md:left-[-6rem] w-12 md:w-24 h-[2px] bg-[#FFFCE1]/20"></div>
+
+            <div
+              className="flex-shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw] flex flex-col md:flex-row gap-8 md:gap-12 items-center bg-neutral-900/50 border border-[#FFFCE1]/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm relative z-10 hover:border-[#FFFCE1]/30 transition-colors duration-300"
+            >
+              <div className="flex-1 space-y-6">
+                <div className="flex items-center gap-4">
+                  <span className="px-4 py-1 rounded-full border border-[#FFFCE1]/30 text-[#FFFCE1] font-mono text-sm uppercase tracking-widest">
+                    {edu.duration}
+                  </span>
+                  <div className="h-[1px] flex-1 bg-[#FFFCE1]/20"></div>
+                </div>
+
+                <h3 className="text-4xl md:text-5xl font-bebas text-[#FFFCE1] leading-none">
+                  {edu.title}
+                </h3>
+                <h4 className="text-2xl font-tinos text-gray-400 italic">
+                  {edu.institution}
+                </h4>
+                <p className="text-gray-300 font-sans text-lg leading-relaxed">
+                  {edu.description}
+                </p>
+              </div>
+
+              {edu.image && (
+                <div className="w-full md:w-64 h-48 md:h-64 relative flex-shrink-0 rounded-2xl overflow-hidden border border-[#FFFCE1]/10 bg-[#FFFCE1]/5 p-4">
+                  <img
+                    src={edu.image}
+                    alt={edu.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Connecting Line (After) - Only if not last */}
+            {index < education.length - 1 && (
+              <div className="absolute top-1/2 right-[-3rem] md:right-[-6rem] w-12 md:w-24 h-[2px] bg-[#FFFCE1]/20"></div>
+            )}
+          </div>
+        ))}
+
+        {/* End Spacer */}
+        <div className="w-[50vw] flex-shrink-0"></div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Education
+export default Education;

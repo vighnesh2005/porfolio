@@ -3,7 +3,6 @@ import Hero from "@/sections/hero";
 import Skills from "@/sections/Skills";
 import Projects from "@/sections/projects";
 import Education from "@/sections/education";
-import CodingStats from "@/sections/CodingStats";
 import Contact from "@/sections/contact";
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
         <Education />
         <Skills />
         <Projects />
-        <CodingStats />
         <Contact />
       </div>
     </>
