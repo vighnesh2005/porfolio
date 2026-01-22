@@ -121,7 +121,7 @@ export const projects = [
         tags: ["HTML", "CSS", "JavaScript", "next.js", "Node.js", "MongoDB"]
     },
     {
-        title: "Onlinr File Management System",
+        title: "Online File Management System",
         description: "Online File Management System is a robust web application designed for seamless document organization, storage, and retrieval. It features an intuitive interface that lets users upload, categorize, search, and share files securely. Built using modern web technologies, the platform ensures smooth performance across devices and real-time updates to enable efficient collaboration. Ideal for individuals and small teams looking for a simple, reliable, and flexible solution to manage digital assets in one centralized hub.",
         images:["ofms-1.png","ofms-2.png","ofms-3.png","ofms-4.png"],
         github: "https://github.com/vighnesh2005/Online-file-management-system",
